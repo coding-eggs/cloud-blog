@@ -1,0 +1,105 @@
+server:
+  port: 9527
+  servlet:
+    context-path: /auth/server
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  application:
+    name: auth-server
+  rabbitmq:
+    host: 182.61.43.146
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: my_vhost
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: dev
+        group: blog
+#        cluster-name: DEFAULT
+#        metadata:
+    config:
+      uri: http://127.0.0.1:9999
+      fail-fast: true
+      label: master
+      username: coding
+      password: coding
+      retry:
+        multiplier: 1.1D
+        initial-interval: 1000
+        max-interval: 2000
+        max-attempts: 6
+    stream:
+      default-binder: rabbit
+      binders:
+        rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 182.61.43.146
+                port: 5672
+                username: admin
+                password: admin
+                virtual-host: my_vhost
+      bindings:
+        input:
+          # 该参数用来设置绑定通道组，该参数主要作用于输入通道，保证同一消息组中得消息只有一个消费实例接受和处理
+          # group: null
+          destination: config.messages
+          binder: rabbit
+          content-type: application/json
+          consumer:
+            # 输入通道消费者得并发数
+            concurrency: 1
+        output:
+          destination: condig.messages
+          binder: rabbit
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://ailuoli.cn:1234/cloud_blog?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.cloud.blog.model
+  mapper-locations: classpath*:mapper/*.xml
+
+security:
+  oauth2:
+    authorization:
+      jwt:
+        key-alias: coding.keystore
+        key-store-password: coding
+        key-store: coding.keystore
+    client:
+      # 12 小时
+      access-token-validity-seconds: 43200
+      # 30 天
+      refresh-token-validity-seconds: 604800
+  ignore:
+    urls:
+      - "/security/login"
+      - "/security/logout"
+      - "/oauth/**"
+      - "/actuator/**"
+      - "/js/**"
+      - "/html/**"
+      - "/img/**"
+      - "/font/**"
+      - "/css/**"
+      - "/layer/**"
+      - "/rsa/publicKey"
+      - "/v2/api-docs"
+
+logging:
+  level:
+    root: info

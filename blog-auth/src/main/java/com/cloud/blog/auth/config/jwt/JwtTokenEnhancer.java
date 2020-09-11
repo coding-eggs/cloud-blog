@@ -19,9 +19,8 @@ public class JwtTokenEnhancer implements TokenEnhancer {
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
         DefaultOAuth2AccessToken defaultOAuth2AccessToken = new DefaultOAuth2AccessToken(accessToken);
         BaseSecurityUser securityUser = (BaseSecurityUser) authentication.getPrincipal();
-        // 将密码置空
-        securityUser.setCredential(null);
-        defaultOAuth2AccessToken.getAdditionalInformation().put(BlogConstant.USER_INFO,securityUser);
+        defaultOAuth2AccessToken.getAdditionalInformation().put(BlogConstant.ROLE_INFO,securityUser.getAuthorities());
+        defaultOAuth2AccessToken.getAdditionalInformation().put(BlogConstant.USERNAME,securityUser.getNickname());
         return defaultOAuth2AccessToken;
     }
 }

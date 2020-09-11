@@ -1,6 +1,5 @@
 package com.cloud.blog.data.mapper;
 
-import com.cloud.blog.data.model.base.BaseSecurityUser;
 import com.cloud.blog.data.model.po.BlogUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,5 +20,5 @@ public interface BlogUserMapper {
 
     int updateByPrimaryKey(BlogUser record);
 
-    BaseSecurityUser selectUserByUsername(@Param("username") String username);
+    BlogUser selectUserByUsername(@Param("username") String username);
 }

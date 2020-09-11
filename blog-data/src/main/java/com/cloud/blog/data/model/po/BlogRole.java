@@ -1,6 +1,8 @@
 package com.cloud.blog.data.model.po;
 
 import java.io.Serializable;
+
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -9,15 +11,13 @@ import lombok.Data;
  */
 @Data
 public class BlogRole implements  Serializable {
-    /**
-     * 角色id
-     */
+
+    @ApiModelProperty(value = "id")
     private Long id;
 
-    /**
-     * 角色描述
-     */
+    @ApiModelProperty(value = "角色名称")
     private String roleName;
+
 
     private static final long serialVersionUID = 1L;
 }

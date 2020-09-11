@@ -5,7 +5,9 @@ public class BlogConstant {
 
     public static final String AUTHORIZATION_HEADER="Authorization";
 
-    public static final String USER_INFO = "user_info";
+    public static final String USERNAME = "username";
+
+    public static final String ROLE_INFO = "role_info";
 
     public static final String STR_Empty = "";
 

@@ -1,6 +1,10 @@
-package com.cloud.blog.auth.config.base;
+package com.cloud.blog.data.model.base;
 
+import com.cloud.blog.data.model.po.BlogRole;
+import com.cloud.blog.data.model.po.BlogUser;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * @ClassName JWT
@@ -22,7 +26,10 @@ public class BaseJwt {
     private String refresh_token;
 
     /** 用户信息 */
-    private BaseSecurityUser user_info;
+    private String username;
+
+    /** 角色信息 */
+    private List<BlogRole> role_info;
 
     /** 过期时间 */
     private int expires_in;

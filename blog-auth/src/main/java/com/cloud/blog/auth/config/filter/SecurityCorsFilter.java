@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 /**
- * @ClassName CorsFilter
- * @Description 跨域拦截器
- * @Author wsail
- * @Date 2020/1/13 15:52
- **/
+* 描述
+* @author myk
+*/
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Configuration
 public class SecurityCorsFilter implements Filter {

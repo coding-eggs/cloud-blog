@@ -30,7 +30,7 @@
     from blog_user
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="selectUserByUsername" resultType="com.cloud.blog.data.model.base.BaseSecurityUser">
+  <select id="selectUserByUsername" resultType="com.cloud.blog.auth.config.base.BaseSecurityUser">
     select
       id,
       username,

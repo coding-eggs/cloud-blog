@@ -15,4 +15,5 @@ public interface OAuth2FeignClient {
     @PostMapping(value = "/auth/server/oauth/token",headers = {HttpHeaders.CONTENT_TYPE,MediaType.MULTIPART_FORM_DATA_VALUE})
     BaseJwt getJwtToken(@RequestBody MultiValueMap<String,String> map);
 
+
 }

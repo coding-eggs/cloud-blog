@@ -1,24 +1,16 @@
 package com.cloud.blog.auth.config.service;
 
 
-import com.cloud.blog.data.model.base.BaseSecurityRole;
-import com.cloud.blog.data.model.base.BaseSecurityUser;
+import com.cloud.blog.auth.config.base.BaseSecurityUser;
 import com.cloud.blog.data.mapper.BlogRoleMapper;
 import com.cloud.blog.data.mapper.BlogUserMapper;
-import com.cloud.blog.data.model.po.BlogUser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
-
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service

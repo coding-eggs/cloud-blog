@@ -1,4 +1,4 @@
-package com.cloud.blog.data.model.base;
+package com.cloud.blog.auth.config.base;
 
 import lombok.Data;
 

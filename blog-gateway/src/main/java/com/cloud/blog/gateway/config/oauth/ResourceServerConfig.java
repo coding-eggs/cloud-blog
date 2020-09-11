@@ -15,11 +15,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Autowired
     private TokenStore jwtTokenStore;
 
-
-
     @Override
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        super.configure(resources);
+    public void configure(ResourceServerSecurityConfigurer resources) {
+        resources.tokenStore(jwtTokenStore);
     }
 
     @Override

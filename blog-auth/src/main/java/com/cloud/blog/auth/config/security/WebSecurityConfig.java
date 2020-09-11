@@ -49,14 +49,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/security/login","/blog/user_info","/security/logout","/oauth/**","/actuator/**").permitAll()
-                .antMatchers("/rsa/publicKey").permitAll()
+                .antMatchers("/security/login","/oauth/**","/actuator/**").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
                 .antMatchers("/security/login").permitAll()
                 .antMatchers("/js/**","/html/**","/img/**","/font/**","/css/**","/layer/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/html/login.html")
                 .loginProcessingUrl("/security/login")
+                .and()
+                .logout()
+                .logoutSuccessUrl("/oauth/logout")
                 .and().headers().frameOptions().sameOrigin();
 
 

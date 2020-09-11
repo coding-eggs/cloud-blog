@@ -5,17 +5,10 @@ import com.cloud.blog.data.model.base.BaseResponse;
 import com.cloud.blog.gateway.config.oauth.OAuth2ClientProperties;
 import com.cloud.blog.gateway.service.feign.OAuth2FeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
-import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 
 /**
@@ -24,7 +17,7 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 */
 
 @RestController
-public class OAuth2CallBackController {
+public class OAuth2Controller {
 
     @Autowired
     private OAuth2ClientProperties properties;
@@ -45,4 +38,9 @@ public class OAuth2CallBackController {
         return new BaseResponse<>(jwt);
     }
 
+
+    @GetMapping(value = "/hello")
+    public String hello(){
+        return "hello";
+    }
 }

@@ -4,7 +4,6 @@ import com.cloud.blog.data.model.base.BaseSecurityUser;
 import com.cloud.blog.data.model.po.BlogUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 @Mapper

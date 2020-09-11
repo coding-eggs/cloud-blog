@@ -2,7 +2,6 @@ package com.cloud.blog.data.mapper;
 
 import com.cloud.blog.data.model.base.BaseSecurityRole;
 import com.cloud.blog.data.model.po.BlogRole;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

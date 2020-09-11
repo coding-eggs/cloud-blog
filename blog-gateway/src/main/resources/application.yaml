@@ -8,8 +8,6 @@ management:
       exposure:
         include: '*'
 spring:
-  application:
-    name: gateway-server
   rabbitmq:
     host: 182.61.43.146
     port: 5672
@@ -22,22 +20,6 @@ spring:
     password: 123456
     url: jdbc:mysql://ailuoli.cn:1234/cloud_blog?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
   cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-        namespace: dev
-        group: blog
-    config:
-      uri: http://127.0.0.1:9999
-      fail-fast: true
-      label: master
-      username: coding
-      password: coding
-      retry:
-        multiplier: 1.1D
-        initial-interval: 1000
-        max-interval: 2000
-        max-attempts: 6
     stream:
       default-binder: rabbit
       binders:
@@ -75,12 +57,17 @@ security:
       grant-type: authorization_code
     resource:
       token-info-uri: http://127.0.0.1:9527/auth/server/oauth/check_token
-      jwk:
-        key-set-uri: http://127.0.0.1:9527/auth/server/rsa/publicKey
+      # 这个参数用来获取publicKey，该接口返回得是map，publicKey得键是 “value”
+      jwt:
+        key-uri: http://${service.auth-server.host}${service.auth-server.context}/oauth/token_key
       prefer-token-info: true
     authorization:
       check-token-access: http://127.0.0.1:9527/auth/server/oauth/check_token
-
+service:
+  auth-server:
+    host: 127.0.0.1:9527
+    name: auth-server
+    context: /auth/server
 feign:
   hystrix:
     enabled: true

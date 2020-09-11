@@ -1,4 +1,4 @@
-package com.cloud.blog.data.model.base;
+package com.cloud.blog.auth.config.base;
 
 import com.cloud.blog.data.model.po.BlogRole;
 import io.swagger.annotations.ApiModel;
@@ -11,7 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 //@Data
 //@EqualsAndHashCode(callSuper = true)
 //@Accessors(chain = true)
-//@ApiModel(value = "com.cloud.blog.data.model.base.BaseSecurityRole",description = "oauth权限")
+//@ApiModel(value = "com.cloud.blog.auth.config.base.BaseSecurityRole",description = "oauth权限")
 public class BaseSecurityRole extends BlogRole implements GrantedAuthority {
 
     @ApiModelProperty(value = "id")

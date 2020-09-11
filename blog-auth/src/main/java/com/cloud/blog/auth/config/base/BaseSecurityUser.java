@@ -1,15 +1,12 @@
-package com.cloud.blog.data.model.base;
+package com.cloud.blog.auth.config.base;
 
 import com.cloud.blog.data.model.enums.EnumDelete;
 import com.cloud.blog.data.model.enums.EnumLock;
 import com.cloud.blog.data.model.po.BlogUser;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -21,7 +18,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@ApiModel(value = "com.cloud.blog.data.model.base.BaseSecurityUser",description = "安全类")
+@ApiModel(value = "com.cloud.blog.auth.config.base.BaseSecurityUser",description = "安全类")
 public class BaseSecurityUser extends BlogUser implements UserDetails, Serializable {
 
     @ApiModelProperty(value = "角色列表")

@@ -16,10 +16,10 @@ import java.io.Serializable;
 @Data
 public class BaseResponse<T> implements Serializable {
 
-    private String code;
+    private String code = "200";
 
 
-    private String msg;
+    private String msg = "成功";
 
 
     private T data;

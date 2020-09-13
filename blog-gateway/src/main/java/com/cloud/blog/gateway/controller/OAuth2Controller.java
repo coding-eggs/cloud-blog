@@ -5,10 +5,15 @@ import com.cloud.blog.data.model.base.BaseResponse;
 import com.cloud.blog.gateway.config.oauth.OAuth2ClientProperties;
 import com.cloud.blog.gateway.service.feign.OAuth2FeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 
 /**
@@ -23,8 +28,7 @@ public class OAuth2Controller {
     private OAuth2ClientProperties properties;
 
     @Autowired
-    private OAuth2FeignClient feignClient;
-
+    private RestTemplate restTemplate;
 
     @GetMapping(value = "/oauth/callback")
     public BaseResponse<BaseJwt> authCodeSuccessCallBack(String code){
@@ -34,7 +38,10 @@ public class OAuth2Controller {
         map.add("redirect_uri",properties.getRegisteredRedirectUri());
         map.add("grant_type",properties.getGrantType());
         map.add("code",code);
-        BaseJwt jwt = feignClient.getJwtToken(map);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
+        HttpEntity<MultiValueMap<String,String>> httpEntity = new HttpEntity<>(map,httpHeaders);
+        BaseJwt jwt = restTemplate.exchange(properties.getAccessTokenUri(), HttpMethod.POST,httpEntity,BaseJwt.class).getBody();
         return new BaseResponse<>(jwt);
     }
 

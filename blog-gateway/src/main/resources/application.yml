@@ -67,8 +67,8 @@ feign:
         connect-timeout: 5000
         read-timeout: 10000
 ribbon:
-  ConnectTimeout: 3000 #服务请求连接超时时间（毫秒）
-  ReadTimeout: 3000 #服务请求处理超时时间（毫秒）
+  ConnectTimeout: 6000 #服务请求连接超时时间（毫秒）
+  ReadTimeout: 6000 #服务请求处理超时时间（毫秒）
 #指令命令配置，采用hystrix.command.<commandKey>作为前缀。 而<commandKey>默认情况下会采用Feign客户端的方法名作为标识。
 #同样的方法名会共享Hystrix的配置，可以重写Feign.Builder的实现，并在应用主类中创建它的实例来覆盖自动化配置HystrixFeign.Builder实现
 # 这里设置熔断的策略时间，因为feign 访问/oauth/token 会超时而熔断

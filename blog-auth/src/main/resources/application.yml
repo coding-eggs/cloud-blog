@@ -9,7 +9,7 @@ management:
         include: '*'
 spring:
   profiles:
-    active: dev
+    active: docker
   rabbitmq:
     host: 182.61.43.146
     port: 5672

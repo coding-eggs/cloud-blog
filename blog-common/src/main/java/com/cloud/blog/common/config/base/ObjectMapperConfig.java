@@ -1,11 +1,13 @@
 package com.cloud.blog.common.config.base;
 
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-@Component
+@Configuration
 public class ObjectMapperConfig {
 
     @Bean
@@ -85,6 +87,10 @@ public class ObjectMapperConfig {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+        // 允许出现特殊字符和转义符
+        objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+        // 允许出现单引号
+        objectMapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
         /*
           long类型前端精度丢失问题（超过53位二进制数），
           建议在需要转换的字段上加注解 @JsonFormat(shape = JsonFormat.Shape.STRING)

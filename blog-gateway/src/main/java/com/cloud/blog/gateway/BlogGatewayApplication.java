@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.cloud.blog.gateway","com.cloud.blog.data","com.cloud.blog.common"})
 public class BlogGatewayApplication {
 
     public static void main(String[] args) {

@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: dev
+        group: blog
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://127.0.0.1:9527/auth/server/oauth/check_token
+      # 这个参数用来获取publicKey，该接口返回得是map，publicKey得键是 “value”
+      jwt:
+        key-uri: http://127.0.0.1:9527/auth/server/oauth/token_key
+    authorization:
+      check-token-access: http://127.0.0.1:9527/auth/server/oauth/check_token
+    client:
+      access-token-uri: http://127.0.0.1:9527/auth/server/oauth/token
+      user-authorization-uri: http://127.0.0.1:9527/auth/server/oauth/authorize
+      client-id: gateway-server
+      # 123456
+      client-secret: 123456
+      registered-redirect-uri: http://127.0.0.1:8080/gateway/server/oauth/callback
+      grant-type: authorization_code
+service:
+  auth-server:
+    host: 127.0.0.1:9527
+    name: auth-server
+    context: /auth/server
+    image-name: auth-server

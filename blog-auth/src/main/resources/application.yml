@@ -8,6 +8,8 @@ management:
       exposure:
         include: '*'
 spring:
+  profiles:
+    active: dev
   rabbitmq:
     host: 182.61.43.146
     port: 5672
@@ -65,21 +67,3 @@ security:
       access-token-validity-seconds: 43200
       # 30 天
       refresh-token-validity-seconds: 604800
-  ignore:
-    urls:
-      - "/security/login"
-      - "/security/logout"
-      - "/oauth/**"
-      - "/actuator/**"
-      - "/js/**"
-      - "/html/**"
-      - "/img/**"
-      - "/font/**"
-      - "/css/**"
-      - "/layer/**"
-      - "/rsa/publicKey"
-      - "/v2/api-docs"
-
-logging:
-  level:
-    root: info

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: auth-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos:8848
+        namespace: dev
+        group: blog
+    #        cluster-name: DEFAULT
+    #        met
+logging:
+  level:
+    root: info

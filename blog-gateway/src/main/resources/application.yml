@@ -8,6 +8,8 @@ management:
       exposure:
         include: '*'
 spring:
+  profiles:
+    active: dev
   rabbitmq:
     host: 182.61.43.146
     port: 5672
@@ -46,28 +48,6 @@ spring:
         output:
           destination: condig.messages
           binder: rabbit
-security:
-  oauth2:
-    client:
-      access-token-uri: http://127.0.0.1:9527/auth/server/oauth/token
-      user-authorization-uri: http://127.0.0.1:9527/auth/server/oauth/authorize
-      client-id: gateway-server
-      client-secret: 123456
-      registered-redirect-uri: http://127.0.0.1:8080/gateway/server/oauth/callback
-      grant-type: authorization_code
-    resource:
-      token-info-uri: http://127.0.0.1:9527/auth/server/oauth/check_token
-      # 这个参数用来获取publicKey，该接口返回得是map，publicKey得键是 “value”
-      jwt:
-        key-uri: http://${service.auth-server.host}${service.auth-server.context}/oauth/token_key
-      prefer-token-info: true
-    authorization:
-      check-token-access: http://127.0.0.1:9527/auth/server/oauth/check_token
-service:
-  auth-server:
-    host: 127.0.0.1:9527
-    name: auth-server
-    context: /auth/server
 feign:
   hystrix:
     enabled: true
@@ -113,3 +93,11 @@ logging:
 #  add-host-header: true
 #  sensitive-headers:
 #  type-handlers-package: com.cloud.blog.auth.handler
+
+
+
+
+  swagger:
+    enabled: true
+    docket:
+      base-package: io.github

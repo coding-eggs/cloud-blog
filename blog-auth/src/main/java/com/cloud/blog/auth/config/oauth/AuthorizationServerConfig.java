@@ -3,17 +3,16 @@ package com.cloud.blog.auth.config.oauth;
 
 import com.cloud.blog.auth.config.jwt.JwtTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerTokenServicesConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -37,6 +36,7 @@ import java.util.List;
 * 并没有对 keypair 进行赋值。所以这里我们使用原生得配置类，直接加载进来，把需要自定义得tokenService 自定义
 * @author myk
 */
+@Order(10)
 @Configuration
 @EnableAuthorizationServer
 @Import({AuthorizationServerProperties.class,AuthorizationServerTokenServicesConfiguration.class})
@@ -65,9 +65,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
 
@@ -83,8 +80,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 // 开启 /oauth/check_token 验证端口认证权限访问
                 .checkTokenAccess("isAuthenticated()")
                 // 允许表单验证
-                .allowFormAuthenticationForClients()
-                .passwordEncoder(passwordEncoder);
+                .allowFormAuthenticationForClients();
     }
 
     @Override

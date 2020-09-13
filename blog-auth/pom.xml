@@ -15,10 +15,10 @@
     <dependencies>
 
         <!--nacos-->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -34,7 +34,6 @@
 <!--            <artifactId>spring-security-jwt</artifactId>-->
 <!--            <version>${jwt.version}</version>-->
 <!--        </dependency>-->
-        <!--rabbit -->
 
         <!-- https://mvnrepository.com/artifact/org.springframework.security.experimental/spring-security-oauth2-authorization-server -->
 <!--        <dependency>-->

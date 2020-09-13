@@ -20,7 +20,7 @@ public class JwtTokenEnhancer implements TokenEnhancer {
         DefaultOAuth2AccessToken defaultOAuth2AccessToken = new DefaultOAuth2AccessToken(accessToken);
         BaseSecurityUser securityUser = (BaseSecurityUser) authentication.getPrincipal();
         defaultOAuth2AccessToken.getAdditionalInformation().put(BlogConstant.ROLE_INFO,securityUser.getAuthorities());
-        defaultOAuth2AccessToken.getAdditionalInformation().put(BlogConstant.USERNAME,securityUser.getNickname());
+        defaultOAuth2AccessToken.getAdditionalInformation().put(BlogConstant.USER_NAME,securityUser.getNickname());
         return defaultOAuth2AccessToken;
     }
 }

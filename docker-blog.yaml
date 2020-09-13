@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  auth-server:
+    image: blog-auth:latest
+    ports:
+      - 9527:9527
+    networks:
+      - blog-cloud
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: vip
+      update_config:
+        parallelism: 1
+        delay: 120s
+        order: stop-first
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+  gateway-server:
+    image: blog-gateway:latest
+    ports:
+      - 8080:8080
+    networks:
+      - blog-cloud
+    depends_on:
+      - auth-server
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: vip
+      update_config:
+        parallelism: 1
+        delay: 120s
+        order: stop-first
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+networks:
+  blog-cloud:
+    external: true

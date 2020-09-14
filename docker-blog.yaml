@@ -19,6 +19,26 @@ services:
         delay: 5s
         max_attempts: 3
         window: 120s
+
+  admin-server:
+    image: blog-admin:latest
+    ports:
+      - 8101:8101
+    networks:
+      - blog-cloud
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: vip
+      update_config:
+        parallelism: 1
+        delay: 30s
+        order: stop-first
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 30s
 #  gateway-server:
 #    image: blog-gateway:latest
 #    ports:

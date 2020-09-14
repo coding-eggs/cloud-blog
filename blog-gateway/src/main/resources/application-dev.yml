@@ -4,23 +4,25 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.1.5:8848
+        server-addr: 192.168.146.1:8848
         namespace: dev
         group: blog
+        watch:
+          enabled: true
 security:
   oauth2:
     resource:
-      token-info-uri: http://192.168.1.5:9527/auth/server/oauth/check_token
+      token-info-uri: http://192.168.146.1:9527/oauth/check_token
       # 这个参数用来获取publicKey，该接口返回得是map，publicKey得键是 “value”
       jwt:
-        key-uri: http://192.168.1.5:9527/auth/server/oauth/token_key
+        key-uri: http://192.168.146.1:9527/oauth/token_key
     authorization:
-      check-token-access: http://192.168.1.5:9527/auth/server/oauth/check_token
+      check-token-access: http://192.168.146.1:9527/oauth/check_token
     client:
-      access-token-uri: http://192.168.1.5:9527/auth/server/oauth/token
-      user-authorization-uri: http://192.168.1.5:9527/auth/server/oauth/authorize
+      access-token-uri: http://192.168.146.1:9527/oauth/token
+      user-authorization-uri: http://192.168.146.1:9527/oauth/authorize
       client-id: gateway-server
       # 123456
       client-secret: 123456
-      registered-redirect-uri: http://192.168.1.5:8080/gateway/server/oauth/callback
+      registered-redirect-uri: http://192.168.146.1:8080/oauth/callback
       grant-type: authorization_code

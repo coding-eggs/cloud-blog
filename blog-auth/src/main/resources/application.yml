@@ -1,15 +1,16 @@
 server:
   port: 9527
-  servlet:
-    context-path: /auth/server
-management:
+management: #开启SpringBoot Admin的监控
   endpoints:
     web:
       exposure:
         include: '*'
+  endpoint:
+    health:
+      show-details: always
 spring:
   profiles:
-    active: docker
+    active: dev
   rabbitmq:
     host: 182.61.43.146
     port: 5672

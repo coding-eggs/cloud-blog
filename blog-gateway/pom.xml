@@ -36,6 +36,12 @@
             <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
 
+        <!--admin 监控-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>blog-common</artifactId>

@@ -1,5 +1,6 @@
 package com.cloud.blog.data.model.po;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
+@ApiModel(value = "com.cloud.blog.data.model.po.BlogUser",description = "用户实体类")
 public class BlogUser implements Serializable {
     /**
      * 用户id

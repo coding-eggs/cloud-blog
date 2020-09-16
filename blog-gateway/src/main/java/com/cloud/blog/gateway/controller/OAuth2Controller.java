@@ -3,7 +3,6 @@ package com.cloud.blog.gateway.controller;
 import com.cloud.blog.data.model.base.BaseJwt;
 import com.cloud.blog.data.model.base.BaseResponse;
 import com.cloud.blog.gateway.config.oauth.OAuth2ClientProperties;
-import com.cloud.blog.gateway.service.feign.OAuth2FeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

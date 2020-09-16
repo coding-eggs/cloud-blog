@@ -6,6 +6,8 @@ services:
       - 9527:9527
     networks:
       - blog-cloud
+    depends_on:
+      - admin-server
     deploy:
       mode: replicated
       replicas: 1

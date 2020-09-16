@@ -28,12 +28,7 @@
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>
-        <!--jwt-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.security</groupId>-->
-<!--            <artifactId>spring-security-jwt</artifactId>-->
-<!--            <version>${jwt.version}</version>-->
-<!--        </dependency>-->
+
 
         <!-- https://mvnrepository.com/artifact/org.springframework.security.experimental/spring-security-oauth2-authorization-server -->
 <!--        <dependency>-->

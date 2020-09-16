@@ -9,8 +9,11 @@ management: #开启SpringBoot Admin的监控
     health:
       show-details: always
 spring:
+  thymeleaf:
+    check-template-location: false
+    check-template: false
   profiles:
-    active: dev
+    active: docker
   rabbitmq:
     host: 182.61.43.146
     port: 5672

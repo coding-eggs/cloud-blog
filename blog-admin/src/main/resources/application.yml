@@ -1,8 +1,11 @@
 spring:
   profiles:
-    active: dev
+    active: docker
   application:
     name: blog-admin
+  thymeleaf:
+    check-template: false
+    check-template-location: false
   security: # \u914D\u7F6E\u767B\u5F55\u7528\u6237\u540D\u548C\u5BC6\u7801
     user:
       name: coding
@@ -11,5 +14,6 @@ spring:
     admin:
       discovery:
         ignored-services: ${spring.application.name}
+
 server:
   port: 8101

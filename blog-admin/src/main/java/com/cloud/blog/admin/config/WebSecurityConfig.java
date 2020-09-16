@@ -1,4 +1,4 @@
-package com.blog.admin.config;
+package com.cloud.blog.admin.config;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //1.配置所有静态资源和登录页可以公开访问
                 .antMatchers(adminContextPath + "/assets/**").permitAll()
                 .antMatchers(adminContextPath + "/login").permitAll()
+                .antMatchers(adminContextPath + "/instances/**").permitAll()
+                .antMatchers(adminContextPath + "/actuator/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 //2.配置登录和登出路径

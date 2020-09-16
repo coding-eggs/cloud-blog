@@ -1,4 +1,10 @@
 spring:
+  boot:
+    admin:
+      client:
+        instance:
+          service-base-url: http://auth-server:9527
+        url: http://admin-server:8101
   cloud:
     nacos:
       discovery:

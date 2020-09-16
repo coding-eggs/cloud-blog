@@ -1,4 +1,10 @@
 spring:
+  boot:
+    admin:
+      client:
+        instance:
+          service-url: http://127.0.0.1:9527
+        url: http://127.0.0.1:8101
   cloud:
     nacos:
       discovery:
@@ -8,4 +14,4 @@ spring:
     #        cluster-name: DEFAULT
 logging:
   level:
-    root: debug
+    root: info

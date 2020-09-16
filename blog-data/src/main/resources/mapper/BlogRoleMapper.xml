@@ -14,7 +14,7 @@
     from blog_role
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="selectRoleListByUserId" resultType="com.cloud.blog.auth.config.base.BaseSecurityRole">
+  <select id="selectRoleListByUserId" resultType="com.cloud.blog.data.model.po.BlogRole">
     select br.id,
            role_name
     from blog_role br

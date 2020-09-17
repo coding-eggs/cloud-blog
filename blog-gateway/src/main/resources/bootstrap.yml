@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.146.1:8848
+        namespace: dev
+        group: blog

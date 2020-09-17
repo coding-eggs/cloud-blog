@@ -5,28 +5,28 @@ spring:
         instance:
           service-base-url: http://127.0.0.1:8080
         url: http://127.0.0.1:8101
-  application:
-    name: gateway-server
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 192.168.146.1:8848
-        namespace: dev
-        group: blog
+#  application:
+#    name: gateway-server
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 192.168.146.1:8848
+#        namespace: dev
+#        group: blog
 security:
   oauth2:
     resource:
-      token-info-uri: http://192.168.146.1:9527/oauth/check_token
+      token-info-uri: http://auth-server/oauth/check_token
       # 这个参数用来获取publicKey，该接口返回得是map，publicKey得键是 “value”
       jwt:
-        key-uri: http://192.168.146.1:9527/oauth/token_key
+        key-uri: http://auth-server/oauth/token_key
     authorization:
-      check-token-access: http://192.168.146.1:9527/oauth/check_token
+      check-token-access: http://auth-server/oauth/check_token
     client:
       access-token-uri: http://auth-server/oauth/token
-      user-authorization-uri: http://192.168.146.1:9527/oauth/authorize
+      user-authorization-uri: http://auth-server/oauth/authorize
       client-id: gateway-server
       # 123456
       client-secret: 123456
-      registered-redirect-uri: http://192.168.146.1:8080/oauth/callback
+      registered-redirect-uri: http://gateway-server/oauth/callback
       grant-type: authorization_code

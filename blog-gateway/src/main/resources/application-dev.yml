@@ -4,6 +4,7 @@ spring:
       client:
         instance:
           service-base-url: http://127.0.0.1:8080
+        url: http://127.0.0.1:8101
   application:
     name: gateway-server
   cloud:
@@ -12,8 +13,6 @@ spring:
         server-addr: 192.168.146.1:8848
         namespace: dev
         group: blog
-        watch:
-          enabled: true
 security:
   oauth2:
     resource:
@@ -24,7 +23,7 @@ security:
     authorization:
       check-token-access: http://192.168.146.1:9527/oauth/check_token
     client:
-      access-token-uri: http://192.168.146.1:9527/oauth/token
+      access-token-uri: http://auth-server/oauth/token
       user-authorization-uri: http://192.168.146.1:9527/oauth/authorize
       client-id: gateway-server
       # 123456

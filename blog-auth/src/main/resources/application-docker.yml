@@ -11,6 +11,7 @@ spring:
         server-addr: nacos:8848
         namespace: dev
         group: blog
+        ip: 192.168.146.1
     #        cluster-name: DEFAULT
     #        met
 logging:

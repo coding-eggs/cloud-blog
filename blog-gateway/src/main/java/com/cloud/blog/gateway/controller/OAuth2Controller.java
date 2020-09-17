@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Map;
+
 
 /**
 * 描述 回调地址
@@ -45,8 +47,14 @@ public class OAuth2Controller {
     }
 
 
-    @GetMapping(value = "/hello")
-    public String hello(){
-        return "hello";
+    @GetMapping(value = "/oauth/test")
+    public void hello(){
+
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<Void> request = new HttpEntity<>(headers);
+
+        System.out.println((String) restTemplate
+                .exchange("http://auth-server/oauth/token_key", HttpMethod.GET,request, Map.class).getBody()
+                .get("value"));
     }
 }

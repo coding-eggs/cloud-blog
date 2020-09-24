@@ -5,14 +5,14 @@ spring:
         instance:
           service-base-url: http://127.0.0.1:8080
         url: http://127.0.0.1:8101
-#  application:
-#    name: gateway-server
-#  cloud:
-#    nacos:
-#      discovery:
-#        server-addr: 192.168.146.1:8848
-#        namespace: dev
-#        group: blog
+  application:
+    name: gateway-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.146.1:8848
+        namespace: dev
+        group: blog
 security:
   oauth2:
     resource:

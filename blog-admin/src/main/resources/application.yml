@@ -1,19 +1,36 @@
 spring:
   profiles:
-    active: docker
+    active: dev
   application:
     name: blog-admin
   thymeleaf:
     check-template: false
     check-template-location: false
-  security: # \u914D\u7F6E\u767B\u5F55\u7528\u6237\u540D\u548C\u5BC6\u7801
+  security:
     user:
       name: coding
       password: coding
-  boot:  # \u4E0D\u663E\u793Aadmin-server\u7684\u76D1\u63A7\u4FE1\u606F
+  boot:
     admin:
       discovery:
         ignored-services: ${spring.application.name}
+      notify:
+        mail:
+          to: ["2665151959@qq.com"]
+          from: 2665151959@qq.com
+
+  mail:
+    host: smtp.qq.com
+    username: 2665151959@qq.com
+    password: mpxgjlekeopkebij
+    protocol: smtp
+    default-encoding: UTF-8
+    port: 465
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
 
 server:
   port: 8101

@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   admin-server:
-    image: blog-admin:1.0
+    image: coding1.ailuoli.cn:7777/blog-admin/blog-admin:1.0
     ports:
       - 8101:8101
     deploy:

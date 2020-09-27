@@ -1,26 +1,22 @@
 version: "3.8"
 services:
-  auth-server:
-    image: blog-auth:1.0
+  admin-server:
+    image: blog-admin:1.0
     ports:
-      - 9527:9527
-    networks:
-      - blog-cloud
-    depends_on:
-      - admin-server
+      - 8101:8101
     deploy:
       mode: replicated
       replicas: 1
+      placement:
+        constraints:
+          - node.labels.role==coding2
       endpoint_mode: vip
       update_config:
         parallelism: 1
-        delay: 120s
+        delay: 30s
         order: stop-first
       restart_policy:
         condition: on-failure
         delay: 5s
         max_attempts: 3
-        window: 120s
-networks:
-  blog-cloud:
-    external: true
+        window: 30s

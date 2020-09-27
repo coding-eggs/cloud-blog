@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh '''echo "start build"
 echo "start maven build"
-sh mvn clean package -Dmaven.test.skip=true'''
+mvn clean package -Dmaven.test.skip=true'''
       }
     }
 

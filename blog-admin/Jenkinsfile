@@ -3,7 +3,9 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'echo "hello"'
+        sh '''echo "start build"
+echo "start maven build"
+mvn clean package -Dmaven.test.skip=true'''
       }
     }
 

@@ -1,0 +1,13 @@
+pipeline {
+  agent any
+  stages {
+    stage('build') {
+      steps {
+        sh '''echo "start build"
+echo "start maven build"
+/usr/local/maven/maven3.6.3/bin/mvn clean package -Dmaven.test.skip=true'''
+      }
+    }
+
+  }
+}

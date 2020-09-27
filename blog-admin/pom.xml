@@ -6,7 +6,6 @@
 		<groupId>com.cloud</groupId>
 		<artifactId>blog</artifactId>
 		<version>1.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<artifactId>blog-admin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>

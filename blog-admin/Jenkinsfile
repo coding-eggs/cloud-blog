@@ -5,6 +5,7 @@ pipeline {
       steps {
         sh '''echo "start build"
 echo "start maven build"
+pwd
 /usr/local/maven/maven3.6.3/bin/mvn clean package -Dmaven.test.skip=true'''
       }
     }

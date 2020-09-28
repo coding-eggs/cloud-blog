@@ -9,7 +9,7 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.labels.role==coding2
+          - node.role == worker
       endpoint_mode: vip
       update_config:
         parallelism: 1

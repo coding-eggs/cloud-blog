@@ -5,10 +5,24 @@ pipeline {
       steps {
         sh '''echo "start build"
 echo "start maven build"
-pwd
-/usr/local/maven/maven3.6.3/bin/mvn clean package -Dmaven.test.skip=true'''
+cd blog-admin
+/usr/local/maven/maven3.6.3/bin/mvn clean package -Dmaven.test.skip=true
+
+echo "clean prune image"
+docker image prune -f
+
+echo "build docker image"
+docker build -t coding1/ailuoli.cn:7777/blog-admin/blog-admin:${imageVersion}
+
+echo "push image to harbor"
+docker push coding1.ailuoli.cn:7777/blog-admin/blog-admin:${imageVersion}
+
+echo "end build"'''
       }
     }
 
+  }
+  environment {
+    imageVersion = '1.0'
   }
 }

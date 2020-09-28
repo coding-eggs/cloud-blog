@@ -23,7 +23,6 @@ docker image prune -f
 echo "push image to harbor"
 docker push coding1.ailuoli.cn:7777/blog-admin/blog-admin:${imageVersion}
 
-
 echo "end build"'''
       }
     }

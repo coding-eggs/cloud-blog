@@ -1,0 +1,49 @@
+pipeline {
+  agent any
+  stages {
+    stage('build') {
+      steps {
+        sh '''echo "start build"
+echo "start maven build"
+cd blog-auth
+/usr/local/maven/maven3.6.3/bin/mvn clean package -Dmave.test.skip=true
+
+echo "clean prune image"
+docker image prune -f
+
+echo "build docker image"
+docker build -t codnig1.ailuoli.cn:7777/blog-auth/blog-auth:${imageVersion} .
+
+echo "login harbor"
+docker login -u admin -p coding coding1.ailuoli.cn:7777
+
+echo "clean prune image"
+docker image prune -f
+
+echo "push image to harbor"
+docker push coding1.ailuoli.cn:7777/blog-auth/blog-auth:${imageVersion}
+
+echo "end build"'''
+      }
+    }
+
+    stage('deploy') {
+      steps {
+        sh '''echo "start deploy auth server"
+
+echo "clean prune container"
+docker container prune -f
+
+echo "create auth server stack"
+cd blog-auth
+docker stack deploy -c blog-auth.yaml auth
+
+echo "end deploy auth server"'''
+      }
+    }
+
+  }
+  environment {
+    imageVersion = '1.0'
+  }
+}

@@ -13,7 +13,7 @@ spring:
     check-template-location: false
     check-template: false
   profiles:
-    active: dev
+    active: docker
   rabbitmq:
     host: 182.61.43.146
     port: 5672

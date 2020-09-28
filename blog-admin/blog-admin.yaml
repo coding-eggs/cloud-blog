@@ -4,6 +4,8 @@ services:
     image: coding1.ailuoli.cn:7777/blog-admin/blog-admin:1.0
     ports:
       - 8101:8101
+    networks:
+      - blog-cloud
     deploy:
       mode: replicated
       replicas: 1
@@ -20,3 +22,6 @@ services:
         delay: 5s
         max_attempts: 3
         window: 30s
+networks:
+  blog-cloud:
+    external: true

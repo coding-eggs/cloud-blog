@@ -5,9 +5,45 @@ pipeline {
       steps {
         sh '''echo "start build"
 echo "start maven build"
-/usr/local/maven/maven3.6.3/bin/mvn clean package -Dmaven.test.skip=true'''
+cd blog-admin
+/usr/local/maven/maven3.6.3/bin/mvn clean package -Dmaven.test.skip=true
+
+echo "clean prune image"
+docker image prune -f
+
+echo "build docker image"
+docker build -t coding1.ailuoli.cn:7777/blog-admin/blog-admin:${imageVersion} .
+
+echo "login harbor"
+docker login -u admin -p coding coding1.ailuoli.cn:7777
+
+echo "clean prune image"
+docker image prune -f
+
+echo "push image to harbor"
+docker push coding1.ailuoli.cn:7777/blog-admin/blog-admin:${imageVersion}
+
+echo "end build"'''
       }
     }
 
+    stage('deploy') {
+      steps {
+        sh '''echo "start deploy admin server"
+
+echo "clean prune container"
+docker container prune -f
+
+echo "create admin server stack"
+cd blog-admin
+docker stack deploy -c blog-admin.yaml admin
+
+echo "end deploy admin server"'''
+      }
+    }
+
+  }
+  environment {
+    imageVersion = '1.0'
   }
 }

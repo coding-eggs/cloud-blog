@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  admin-server:
+    image: coding1.ailuoli.cn:7777/blog-auth/blog-auth:1.0
+    ports:
+      - 9527:9527
+    networks:
+      - blog-cloud
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+      endpoint_mode: vip
+      update_config:
+        parallelism: 1
+        delay: 30s
+        order: stop-first
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 30s
+networks:
+  blog-cloud:
+    external: true

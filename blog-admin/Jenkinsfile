@@ -27,6 +27,21 @@ echo "end build"'''
       }
     }
 
+    stage('deploy') {
+      steps {
+        sh '''echo "start deploy admin server"
+
+echo "clean prune container"
+docker container prune -f
+
+echo "create admin server stack"
+cd blog-admin
+docker stack deploy -c blog-admin.yaml admin
+
+echo "end deploy admin server"'''
+      }
+    }
+
   }
   environment {
     imageVersion = '1.0'

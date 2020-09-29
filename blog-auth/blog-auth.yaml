@@ -5,7 +5,7 @@ services:
     ports:
       - 9527:9527
     networks:
-      - blog-cloud
+      - coding
     deploy:
       mode: replicated
       replicas: 1
@@ -23,5 +23,5 @@ services:
         max_attempts: 3
         window: 30s
 networks:
-  blog-cloud:
+  coding:
     external: true

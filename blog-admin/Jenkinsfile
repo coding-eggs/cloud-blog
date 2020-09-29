@@ -1,33 +1,20 @@
 pipeline {
   agent any
   stages {
-    stage('build') {
-      parallel {
-        stage('build maven') {
-          steps {
-            sh '''echo "start build"
+    stage('build maven') {
+      steps {
+        sh '''echo "start build"
 echo "start maven build"
 cd blog-admin
 /usr/local/maven/maven3.6.3/bin/mvn clean package -Dmaven.test.skip=true
-'''
-          }
-        }
 
-        stage('build image') {
-          steps {
-            sh '''echo "clean prune image"
+echo "clean prune image"
 docker image prune -f
 
 echo "build docker image"
 docker build -t coding1.ailuoli.cn:7777/blog-admin/blog-admin:${imageVersion} .
 
-'''
-          }
-        }
-
-        stage('push image ') {
-          steps {
-            sh '''echo "login harbor"
+echo "login harbor"
 docker login -u admin -p coding coding1.ailuoli.cn:7777
 
 echo "clean prune image"
@@ -37,9 +24,6 @@ echo "push image to harbor"
 docker push coding1.ailuoli.cn:7777/blog-admin/blog-admin:${imageVersion}
 
 echo "end build"'''
-          }
-        }
-
       }
     }
 

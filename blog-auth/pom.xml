@@ -6,6 +6,7 @@
         <groupId>com.cloud</groupId>
         <artifactId>blog</artifactId>
         <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>blog-auth</artifactId>
     <version>1.0</version>

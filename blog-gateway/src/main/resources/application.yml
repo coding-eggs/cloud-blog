@@ -10,7 +10,7 @@ management: #开启SpringBoot Admin的监控
       show-details: always
 spring:
   profiles:
-    active: dev
+    active: docker
   rabbitmq:
     host: 182.61.43.146
     port: 5672

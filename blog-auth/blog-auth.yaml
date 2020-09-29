@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  admin-server:
+  auth-server:
     image: coding1.ailuoli.cn:7777/blog-auth/blog-auth:1.0
     ports:
       - 9527:9527

@@ -9,7 +9,7 @@ echo "start maven build"
 /usr/local/maven/maven3.6.3/bin/mvn clean install -Dmaven.test.skip=true
 
 cd blog-auth
-/usr/local/maven/maven3.6.3/bin/mvn clean package -Dmave.test.skip=true
+/usr/local/maven/maven3.6.3/bin/mvn clean package -Dmaven.test.skip=true
 
 echo "clean prune image"
 docker image prune -f

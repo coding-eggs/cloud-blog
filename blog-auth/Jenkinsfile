@@ -15,7 +15,7 @@ echo "clean prune image"
 docker image prune -f
 
 echo "build docker image"
-docker build -t codnig1.ailuoli.cn:7777/blog-auth/blog-auth:${imageVersion} .
+docker build -t coding1.ailuoli.cn:7777/blog-auth/blog-auth:${imageVersion} .
 
 echo "login harbor"
 docker login -u admin -p coding coding1.ailuoli.cn:7777

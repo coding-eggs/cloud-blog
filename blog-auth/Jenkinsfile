@@ -5,7 +5,14 @@ pipeline {
       steps {
         sh '''echo "start build"
 echo "start maven build"
-cd blog-auth
+
+cd blog-data
+/usr/local/maven/maven3.6.3/bin/mvn clean install
+
+cd ../blog-common
+/usr/local/maven/maven3.6.3/bin/mvn clean install
+
+cd ../blog-auth
 /usr/local/maven/maven3.6.3/bin/mvn clean package -Dmave.test.skip=true
 
 echo "clean prune image"

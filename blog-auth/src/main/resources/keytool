@@ -1,3 +1,8 @@
-keytool -genkeypair -alias ailuoli -keyalg RSA -keypass Ws961226 -keystore ailuoli.jks -storepass Ws961226
+keytool -genkeypair -alias coding -keyalg RSA -keypass coding -keystore coding.jks -storepass coding
 keytool -list -rfc --keystore ailuoli.jks | openssl x509 -inform pem -pubkey
 
+keytool -genkey -alias coding.keystore -keyalg RSA -validity 36500 -keystore coding.keystore
+
+
+# 生成密钥
+keytool -genkeypair -alias coding -keyalg RSA -keypass coding -keystore coding.jks --storepass coding

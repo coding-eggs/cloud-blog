@@ -4,11 +4,11 @@ spring:
       client:
         instance:
           service-url: http://127.0.0.1:9527
-        url: http://127.0.0.1:8101
+        url: http://ailuoli.cn:8101
   cloud:
     nacos:
       discovery:
-        server-addr: coding1.ailuoli.cn:8848
+        server-addr: ailuoli.cn:8848
         namespace: dev
         group: blog
     #        cluster-name: DEFAULT

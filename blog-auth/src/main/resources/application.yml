@@ -13,9 +13,9 @@ spring:
     check-template-location: false
     check-template: false
   profiles:
-    active: docker
+    active: dev
   rabbitmq:
-    host: 182.61.43.146
+    host: ailuoli.cn
     port: 5672
     username: admin
     password: admin
@@ -29,7 +29,7 @@ spring:
           environment:
             spring:
               rabbitmq:
-                host: 182.61.43.146
+                host: ailuoli.cn
                 port: 5672
                 username: admin
                 password: admin

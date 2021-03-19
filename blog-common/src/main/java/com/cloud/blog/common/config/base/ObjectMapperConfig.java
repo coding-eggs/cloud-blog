@@ -9,7 +9,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -35,12 +34,11 @@ public class ObjectMapperConfig {
             @Override
             public List<BeanPropertyWriter> changeProperties(SerializationConfig config, BeanDescription beanDesc, List<BeanPropertyWriter> beanProperties) {
                 //循环所有的beanPropertyWriter
-                for (Object beanProperty : beanProperties) {
-                    BeanPropertyWriter writer = (BeanPropertyWriter) beanProperty;
+                for (BeanPropertyWriter beanProperty : beanProperties) {
                     //判断字段的类型，如果是array，list，set则注册nullSerializer
-                    if (isArrayType(writer)) {
+                    if (isArrayType(beanProperty)) {
                         //给writer注册一个自己的nullSerializer
-                        writer.assignNullSerializer(new JsonSerializer<Object>() {
+                        beanProperty.assignNullSerializer(new JsonSerializer<Object>() {
                             @Override
                             public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
                                 if (o == null) {
@@ -49,29 +47,29 @@ public class ObjectMapperConfig {
                                 }
                             }
                         });
-                    } else if (isNumber(writer)) {
-                        writer.assignNullSerializer(new JsonSerializer<Object>() {
+                    } else if (isNumber(beanProperty)) {
+                        beanProperty.assignNullSerializer(new JsonSerializer<Object>() {
                             @Override
                             public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
                                 jsonGenerator.writeNumber(0);
                             }
                         });
-                    } else if (isBoolean(writer)) {
-                        writer.assignNullSerializer(new JsonSerializer<Object>() {
+                    } else if (isBoolean(beanProperty)) {
+                        beanProperty.assignNullSerializer(new JsonSerializer<Object>() {
                             @Override
                             public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
                                 jsonGenerator.writeBoolean(false);
                             }
                         });
-                    } else if (isStr(writer) || isDate(writer)) {
-                        writer.assignNullSerializer(new JsonSerializer<Object>() {
+                    } else if (isStr(beanProperty) || isDate(beanProperty)) {
+                        beanProperty.assignNullSerializer(new JsonSerializer<Object>() {
                             @Override
                             public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
                                 jsonGenerator.writeString("");
                             }
                         });
                     } else {
-                        writer.assignNullSerializer(new JsonSerializer<Object>() {
+                        beanProperty.assignNullSerializer(new JsonSerializer<Object>() {
                             @Override
                             public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
                                 jsonGenerator.writeStartObject();

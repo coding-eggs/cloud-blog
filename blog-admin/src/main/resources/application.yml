@@ -18,6 +18,12 @@ spring:
         mail:
           to: ["2665151959@qq.com"]
           from: 2665151959@qq.com
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 120.53.234.127:8848
+        namespace: dev
+        group: blog
 
   mail:
     host: smtp.qq.com
@@ -34,3 +40,5 @@ spring:
 
 server:
   port: 8101
+#  servlet:
+#    context-path: /admin-server

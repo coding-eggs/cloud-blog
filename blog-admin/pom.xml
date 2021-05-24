@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>blog-admin</artifactId>
 	<version>1.0</version>
-	<name>blog admin</name>
+	<name>blog-admin</name>
 	<description>admin server</description>
 
 	<dependencies>
@@ -24,6 +24,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
 		</dependency>
 
 		<dependency>
@@ -43,6 +48,18 @@
 					<layers>
 						<enabled>true</enabled>
 					</layers>
+					<image>
+						<name>ailuoli/${artifactId}:${version}</name>
+						<publish>true</publish>
+					</image>
+					<docker>
+						<host>http://127.0.0.1:2375</host>
+						<tlsVerify>false</tlsVerify>
+						<publishRegistry>
+							<username>ailuoli</username>
+							<password>ailuoli@961226</password>
+						</publishRegistry>
+					</docker>
 				</configuration>
 			</plugin>
 		</plugins>

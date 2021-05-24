@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @EnableAdminServer
 @RestController
+@EnableDiscoveryClient
 public class BlogAdminApplication {
 
 	public static void main(String[] args) {
